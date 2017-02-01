@@ -7,7 +7,7 @@
 #define MAX_INPUT 256
 
 int main(){//start main
-
+int validity;
 char command[MAX_INPUT];//to store users command
 const char s[2] =" ";
 char copytoken[MAX_INPUT];
@@ -48,27 +48,30 @@ while(1){
 	if (strcmp(token, "cd") == 0){		//part2, token is gone here.
 		token = strtok(NULL,s);
 		toen = strtok(token,"\n");	//part2
-		chdir(toen);			//part2
+		validity = chdir(toen);		//part2
+		
+		if (validity == -1){
+			printf("error: new directory is invalid!\n");
+		}
 	}					//part2
 //	else if (strcmp(command,"history\n") == 0){ 			//part3
 //		for (int i = 0; i < pointer; i = i+1){
 //			printf("at [%d] the command is %s \n", i, commandarray[i]);	//part3
 //		}							//part3
 //	}								//part3
-	else if (strcmp(command, "history") == 0) {			  //part3
-		for (int i=0; i<pointer-1; i++) {			          //part3
-			printf("%d %s\n", i, history[i]);		          //part3
-		}							                                  //part3
-		pointer -= 1;						                        //part3
-	}								                                  //part3
+	else if (strcmp(command, "history") == 0) {			//part3
+		for (int i=0; i<pointer-1; i++) {			//part3
+			printf("at [%d] the command is %s \n", i, history[i]);		//part3
+		}							//part3
+		pointer -= 1;						//part3
+	}								
 	else{					//part1
 		if (strcmp(strtok(command, "\n"), "!!") != 0) {
 			system(command);
 		}
 	}					//part1
 
-		
-	
+
 	
 /*TO DO LIST:*/
 /*
